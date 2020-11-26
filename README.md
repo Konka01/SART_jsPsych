@@ -1,6 +1,5 @@
 # SART_jsPsych
 A SART using jsPsych as implemented in Cheyne, Carriere & Smilek (2006). 
-Ce qui est prévu : 
-- Des séquences aléatoires
-- Pas de voisins identiques
-- Des tailles de police aléatoires parmi 4 ou 5 possibilités
+This version did not displays probes.
+Stimuli are defined from the stimuli.js file.
+The stimuli_short.js file is for task testing purpose, the stimuli.js file contains the totality of the stimuli. 
