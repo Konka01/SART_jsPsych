@@ -9,73 +9,75 @@
     </style>
   </head>
     <title>My Experiment</title>
-    <!-- Charger jspsych -->
+    <!-- Load jspsych -->
     <script src="jspsych-6.1.0/jspsych.js"></script>
     <script src="jspsych-6.1.0/plugins/jspsych-fullscreen.js"></script>
     <script src="stimuli_short.js"></script>
-    <!-- Chager le plugin permettant de montrer du texte à l'écran -->
+    <!-- Change the plugin to show text on the screen -->
     <script src="jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jspsych-6.1.0/plugins/jspsych-image-keyboard-response.js"></script>
     <script src="jspsych-6.1.0/plugins/jspsych-html-button-response.js"></script>
     <script src="jspsych-6.1.0/plugins/jspsych-survey-text.js"></script>
-    <!-- Charger un package de styles pour améliorer le visuel de la page -->
+    <!-- 
+Load a style package to improve the visual of the page
+-->
     <link href="jspsych-6.1.0/css/jspsych.css" rel="stylesheet" type="text/css"></link>
   </head>
   <body></body>
-  <!-- À partir d'ici on va déclarer les variables de la tâche -->
+  <!-- From here we will declare the variables of the task -->
   <script>
 
   var subject_id = jsPsych.randomization.randomID(15);
   jsPsych.data.addProperties({
     subject: subject_id
   });
-    // Créer la timeline
+    // Create timeline
     var timeline = [];
 
-    // Définir le message de bienvenue
+    // Define the welcome message
     var welcome = {
       type: "html-keyboard-response",
       choices: ['space'],
-      stimulus: "<div style='font-size:30px;'><p>Bienvenue dans cette étude.</p>"+
-        "<p>La tâche que nous vous proposons nécessite un environnement calme et sans"+
-        " distractions.</p><p>Assurez-vous de ne pas être dérangé.e.s ni par le son"+
-        " de votre ordinateur, ni par une notification, ni par autrui."+
-        "</p><div style = 'color: #CC0000;'>Appuyez sur la barre ESPACE pour commencer.</div></p>"
+      stimulus: "<div style='font-size:30px;'><p>Welcome to this study.</p>"+
+        "<p>The task we propose to you requires a calm environment without"+
+        " distractions.</p><p>Make sure you are not disturbed by the sound"+
+        " of your computer, neither by a notification, nor by others."+
+        "</p><div style = 'color: #CC0000;'>Press the SPACE bar to begin.</div></p>"
     };
 
     var consent = {
       type: "html-keyboard-response",
       choices: ['space'],
-      stimulus: "<div style='font-size:30px;'><p>Cette étude se déroulant en ligne, "+
-        "votre adresse IP sera enregistrée.</p><p>Toutefois, cette information <strong>ne pourra pas</strong> être "+
-        "utilisée pour vous idenfifer.</p><p> Un code a été généré : <span style='border: 2px solid white;'>"+subject_id+"</span></p>"+
-        "<p>Il vous sera rappelé ultérieurement.</p>"+
-        "<p>Ce code est unique et sera à communiquer si vous souhaitez retirer vos données de cette étude.</p>"+
-        "<p>Vous pourrez demander à supprimer vos données en envoyant ce mail à l'adresse suivante : <u>adresse.contact@gmail.com</u>.</p>"+
-        "<p><div style = 'color: #CC0000;'>Appuyez sur la barre ESPACE pour commencer.</div></p>"
+      stimulus: "<div style='font-size:30px;'><p>This study is conducted online, "+
+        "your IP address will be recorded.</p><p>However, this information <strong>will not</strong> be "+
+        "used to identify you.</p><p> A code has been generated : <span style='border: 2px solid white;'>"+subject_id+"</span></p>"+
+        "<p>You will be reminded later.</p>"+
+        "<p>This code is unique and must be provided if you wish to remove your data from this study.</p>"+
+        "<p>You can ask to delete your data by sending this mail to the following address : <u>adresse.contact@gmail.com</u>.</p>"+
+        "<p><div style = 'color: #CC0000;'>Press the SPACE bar to begin.</div></p>"
     };
 
-    // Définir la consigne part I
+    // Define the setpoint part I
     var instructionsI = {
       type: "html-keyboard-response",
-      stimulus: "<p><div style='font-size:30px;'>Des chiffres de 1 à 9 vont apparaître au centre de l'écran.</p>" +
-        "<p>Vous allez devoir appuyer sur la barre <strong>ESPACE</strong> à chaque fois" +
-        " qu'un chiffre apparaîtra <strong>sauf</strong> quand ce sera le chiffre 3." +
-        "</p><p>Chaque chiffre est suivi d'une croix dans un cercle que vous pouvez" +
-        " ignorer.</div></p><div style = 'color: #CC0000;'>Appuyez sur la barre ESPACE pour commencer </div></p>",
+      stimulus: "<p><div style='font-size:30px;'>Numbers from 1 to 9 will appear in the center of the screen.</p>" +
+        "<p>You will have to press the <strong>SPACE</strong> bar each time" +
+        " a number appears <strong>except</strong> when it is the number 3." +
+        "</p><p>Each number is followed by a cross in a circle that you can" +
+        " ignore.</div></p><div style = 'color: #CC0000;'>Press the SPACE bar to begin </div></p>",
         choices: ['space'],
       post_trial_gap: 500
     };
 
-    // Définir la consigne part II
+    // Define the set point part II
     var instructionsII = {
       type: "html-keyboard-response",
-      stimulus: "<p><div style='font-size:30px;'>Par exemple, si vous voyez le chiffre <strong>1</strong>, appuyez sur la barre <strong>ESPACE</strong>.</p>" +
-        "<p>Si vous voyez le chiffre <strong>4</strong>, appuyez sur la barre <strong>ESPACE</strong>.</p>" +
-        "<p>Si vous voyez le chiffre <strong>3</strong>, <strong>n'appuyez pas</strong> sur la barre espace.</p>" +
-        "<p>Si vous voyez le chiffre <strong>7</strong>, appuyez sur la barre <strong>ESPACE</strong>.</p>" +
-        "<p>Essayez d'être le plus rapide possible sans faire d'erreur.</p></div>" +
-        "<p><div style = 'color: #CC0000;'> Appuyez sur la barre ESPACE pour commencer l'entraînement.</div></p>",
+      stimulus: "<p><div style='font-size:30px;'>For example, if you see the number <strong>1</strong>, press the <strong>SPACE</strong> bar.</p>" +
+        "<p>If you see the number <strong>4</strong>, press the <strong>SPACE</strong> bar.</p>" +
+        "<p>If you see the number <strong>3</strong>, <strong>do not press</strong> on the SPACE bar.</p>" +
+        "<p>If you see the number <strong>7</strong>, press the <strong>SPACE</strong> bar.</p>" +
+        "<p>Try to be as fast as possible without making mistakes.</p></div>" +
+        "<p><div style = 'color: #CC0000;'> Press the SPACE bar to begin training.</div></p>",
         choices: ['space'],
       post_trial_gap: 500
     };
@@ -83,10 +85,10 @@
     // Built the main task instructions
     var instructionsRecall = {
       type: "html-keyboard-response",
-      stimulus: "<p><div style='font-size:30px;'>Vous allez maintenant commencer la tâche.</p><p>Les mêmes "+
-      "consignes s'appliquent.</p><p>Essayez d'être le plus rapide possible "+
-      "sans faire d'erreur.</p></div>"+
-      "<p><div style = 'color: #CC0000;'> Appuyez sur la barre ESPACE pour commencer l'entraînement.</div></p>",
+      stimulus: "<p><div style='font-size:30px;'>You will now start the task.</p><p>The same "+
+      "instructions apply.</p><p>Try to be as fast as possible "+
+      "without making mistakes.</p></div>"+
+      "<p><div style = 'color: #CC0000;'> Press the SPACE bar to begin training.</div></p>",
       choices: ['space'],
       post_trial_gap: 500
     }
@@ -101,7 +103,8 @@
       },
       trial_duration: function(){
         var last_number_rt = jsPsych.data.getLastTrialData().values()[0].rt;
-        if(last_number_rt > 0){return 1150-last_number_rt;} else {return 900;}
+        var random = Math.floor(Math.random() * (2750 - 1750)) + 1750
+        if(last_number_rt > 0){return random - last_number_rt;} else {return random;}
       },
       response_ends_trial: false,
       data: {
@@ -116,7 +119,7 @@
         var max_key_press = jsPsych.data.get().last(2).select('key_press').max();
         data.trial_key_press = max_key_press;
         var current_rt = data.rt;
-        // Si on a répondu pendant le mask
+        // If you answered during the mask
         if (current_rt >0){
           data.rt = current_rt+250;data.trial_rt=max_rt+250;}else{
           data.rt = 0;data.trial_rt=max_rt;}
@@ -164,7 +167,7 @@
     	}
     };
     // Create the practice phase
-    // /:\Les tailles de police ne sont pas assez variées
+    // /:\Font sizes are not varied enough
     var practice = {
       timeline: [number, mask, feedback],
       timeline_variables: [
@@ -196,8 +199,8 @@
       type: "html-keyboard-response",
       choices: ['enter'],
       stimulus: function(){
-        // On crée la variable trials en allant chercher les données enregistrées avec jsPsych.data.get()
-        // .filter({test_part: 'test'}) permet de ne prendre que les données associées au test
+        // We create the trials variable by fetching the data recorded with jsPsych.data.get()
+        // .filter({test_part: 'test'}) allows to take only the data associated with the test
         var trials_Go = jsPsych.data.get().filter({test_part: 'practice', condition: 'Go', stimulus: 'img/mask.png'});
         var trials_NoGo = jsPsych.data.get().filter({test_part: 'practice', condition: 'NoGo', stimulus: 'img/mask.png'});
         var correct_Go = trials_Go.filter({correct: true});
@@ -210,12 +213,12 @@
         // For incorrect trials
         var accuracy_NoGo = Math.round(correct_NoGo.count()/trials_NoGo.count()*100);
         var unaccuracy_NoGo = Math.round(incorrect_NoGo.count()/trials_NoGo.count()*100);
-        return "<p><div style='font-size:30px;'>Correct Go : <u>"+accuracy_Go+"</u>% des essais.</p>"+
-        "<p>Votre temps de réaction moyen est de <u>"+rt+"</u>ms.</p>"+
-        "<p>Incorrect Go <u>"+unaccuracy_Go+"</u>% des essais.</p>"+
+        return "<p><div style='font-size:30px;'>Correct Go : <u>"+accuracy_Go+"</u>% tests.</p>"+
+        "<p>Your average response time is <u>"+rt+"</u>ms.</p>"+
+        "<p>Incorrect Go <u>"+unaccuracy_Go+"</u>% tests.</p>"+
         "<p>Correct NoGo <u>"+accuracy_NoGo+"</u>%</p>"+
         "<p>Incorrect NoGo <u>"+unaccuracy_NoGo+"</u>%</p>"+
-        "<p><div style = 'color: #CC0000;'>Appuyez sur la touche <strong>ENTRÉE</strong> pour commencer la tâche.</div></p>";
+        "<p><div style = 'color: #CC0000;'>Press the <strong>ENTER</strong> to start the task.</div></p>";
       }
     };
 
@@ -224,8 +227,8 @@
         type: "html-keyboard-response",
         choices: ['enter'],
         stimulus: function(){
-          // On crée la variable trials en allant chercher les données enregistrées avec jsPsych.data.get()
-          // .filter({test_part: 'test'}) permet de ne prendre que les données associées au test
+          // We create the trials variable by fetching the data recorded with jsPsych.data.get()
+          // .filter({test_part: 'test'}) allows to take only the data associated with the test
           var trials_Go = jsPsych.data.get().filter({test_part: 'test', condition: 'Go', stimulus: 'img/mask.png'});
           var trials_NoGo = jsPsych.data.get().filter({test_part: 'test', condition: 'NoGo', stimulus: 'img/mask.png'});
           var correct_Go = trials_Go.filter({correct: true});
@@ -238,12 +241,12 @@
           // For incorrect trials
           var accuracy_NoGo = Math.round(correct_NoGo.count()/trials_NoGo.count()*100);
           var unaccuracy_NoGo = Math.round(incorrect_NoGo.count()/trials_NoGo.count()*100);
-          return "<p><div style='font-size:30px;'>Correct Go : <u>"+accuracy_Go+"</u>% des essais.</p>"+
-          "<p>Votre temps de réaction moyen est de <u>"+rt+"</u>ms.</p>"+
-          "<p>Incorrect Go <u>"+unaccuracy_Go+"</u>% des essais.</p>"+
+          return "<p><div style='font-size:30px;'>Correct Go : <u>"+accuracy_Go+"</u>% tests.</p>"+
+          "<p>Your average response time is <u>"+rt+"</u>ms.</p>"+
+          "<p>Incorrect Go <u>"+unaccuracy_Go+"</u>% tests.</p>"+
           "<p>Correct NoGo <u>"+accuracy_NoGo+"</u>%</p>"+
           "<p>Incorrect NoGo <u>"+unaccuracy_NoGo+"</u>%</p>"+
-          "<p><div style = 'color: #CC0000;'>Appuyez sur la touche <strong>ENTRÉE</strong> pour commencer la tâche.</div></p>";
+          "<p><div style = 'color: #CC0000;'>Press the <strong>ENTER</strong> to end the task.</div></p>";
         }
       }
 
@@ -256,21 +259,21 @@
       }
     };
 
-    // Message de fin
+    // Closing message
     var end = {
       type: 'html-keyboard-response',
-      stimulus: "<p><div style='font-size:30px;'>Merci de votre participation</p>"+
+      stimulus: "<p><div style='font-size:30px;'>Thank you for your participation</p>"+
         "<p><strong>"+subject_id+"</strong></p>"+
-        "<p>Veuillez conserver ce code - vous pouvez le copier/coller - pour tout contact avec le responsable de l'étude</p></div>"+
-        "<p><div style = 'color: #CC0000;'>Appuyez sur la touche <strong>ENTRÉE</strong> pour quitter.</div></p>",
+        "<p>Please keep this code - you can copy/paste it - for any contact with the research team</p></div>"+
+        "<p><div style = 'color: #CC0000;'>Press the <strong>ENTER</strong> to exit.</div></p>",
       choices: ['enter']
     };
 
     var distraction_probe = {
       type: 'html-button-response',
       stimulus: '<p>Distraction</p>',
-      choices: ['Oui', 'Non'],
-      prompt: "<p>Avez-vous été distrait.e pendant la tâche ?</p>",
+      choices: ['Yes', 'No'],
+      prompt: "<p>Were you distracted during the task ?</p>",
       on_start: function(data){
           document.body.style.cursor = '';
         }
@@ -279,7 +282,7 @@
     var if_distracted = {
       type: 'survey-text',
       questions: [
-        {prompt: "Décrivez succinctement la distraction :"}
+        {prompt: "Briefly describe the distraction :"}
       ],
     };
 
@@ -322,7 +325,7 @@
 
   jsPsych.init({
     timeline: timeline,
-    // Le code suivant premet d'afficher des données une fois la procédure complète terminée
+    // The following code allows you to display data once the procedure is complete
     on_finish: function() {
       jsPsych.data.displayData('csv');
     }
@@ -330,3 +333,4 @@
 
   </script>
 <html>
+
